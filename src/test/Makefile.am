@@ -1,6 +1,11 @@
 AM_CPPFLAGS = -I$(top_srcdir)/src
 AM_LDFLAGS = $(extraLDFLAGS)
 LDADD    = ../libaiori.a $(extraLDADD)
+
+if USE_NCMPI_AIORI
+LDADD += -lpnetcdf
+endif
+
 TESTS = testlib testexample testrand testmdtestoutput test-summary-output.sh test-ior-exit.sh test-mdtest-summary.sh test-csv-output.sh test-byte-transfers.sh test-mmap-options.sh test-mmap-file-size.sh
 check_PROGRAMS = testlib testexample testrand testsummary testmdtestoutput
 testexample_SOURCES  = example.c
